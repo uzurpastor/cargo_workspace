@@ -54,6 +54,7 @@ fn cesar(){
     println!(" + {:?}", cesar_word);
 }
 
+
 fn aphinian_cesar_chiper_logic(word: Vec<char>, alfabet: Vec<char>, k_value: usize, a_value: usize)-> Vec<char> {
     let n_value = alfabet.len();
     let mut ret: Vec<char> = ""
@@ -85,12 +86,9 @@ fn aphinian_cesar_chiper(){
         .chars()
         .collect();
     
-    println!("{:?}", word);
     let cesar_word: Vec<char> = aphinian_cesar_chiper_logic(word, alfabet, k_value, a_value);//костыль
+    println!("{:?}", word);
     println!("{:?}", cesar_word);
-
-
-
 }
 
 
