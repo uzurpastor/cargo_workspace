@@ -29,6 +29,7 @@ fn cesar_init(word: Vec<char>, alfabet:Vec<char>, step: usize) -> Vec<char>{
     for i_chars in word.iter() {
         for j in 0..alfabet.len(){
             if i_chars == &alfabet[j]{
+
                 ret.push(alfabet[(j+step)%strong_of_alfabet]);
             }
         }
