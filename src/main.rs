@@ -3,9 +3,9 @@ use std::io;
 
 fn usize_input(prompt: &str) -> usize{
 
-    let mut input_text = prompt.to_string();
+    let mut input_text = String::new();
     loop{
-        println!("{prompt}");
+        println!("{}", prompt.to_string());
         io::stdin()
             .read_line(&mut input_text)
             .expect("failed to read from stdin");
