@@ -38,8 +38,7 @@ fn cesar_init(word: Vec<char>, alfabet:Vec<char>, step: usize) -> Vec<char>{
 }
 
 
-fn main() {
-
+fn cesar(){
     let alfabet: Vec<char> = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ"
         .chars()
         .collect();
@@ -53,4 +52,9 @@ fn main() {
     println!(" - {:?}", word);
     let cesar_word: Vec<char> = cesar_init(word, alfabet, step);//костыль
     println!(" + {:?}", cesar_word);
+}
+
+
+fn main() {
+    cesar();
 }
