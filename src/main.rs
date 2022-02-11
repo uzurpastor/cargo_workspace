@@ -19,7 +19,7 @@ fn usize_input(prompt: &str) -> usize{
 }
 
 
-fn cesar_init(word: Vec<char>, alfabet:Vec<char>, step: usize) -> Vec<char>{
+fn cesar_init(word: &Vec<char>, alfabet: &Vec<char>, step: usize) -> Vec<char>{
    
     let strong_of_alfabet = alfabet.len();
     let mut ret: Vec<char> = ""
@@ -50,12 +50,12 @@ fn cesar(){
     let step: usize = usize_input("input step for crypto"); 
 
     println!(" - {:?}", word);
-    let cesar_word: Vec<char> = cesar_init(word, alfabet, step);//костыль
+    let cesar_word: Vec<char> = cesar_init(&word, &alfabet, step);//костыль
     println!(" + {:?}", cesar_word);
 }
 
 
-fn aphinian_cesar_chiper_logic(word: Vec<char>, alfabet: Vec<char>, k_value: usize, a_value: usize)-> Vec<char> {
+fn aphinian_cesar_chiper_logic(word: &Vec<char>, alfabet: &Vec<char>, k_value: usize, a_value: usize)-> Vec<char> {
     let n_value = alfabet.len();
     let mut ret: Vec<char> = ""
         .chars()
@@ -86,7 +86,8 @@ fn aphinian_cesar_chiper(){
         .chars()
         .collect();
     
-    let cesar_word: Vec<char> = aphinian_cesar_chiper_logic(word, alfabet, k_value, a_value);//костыль
+    let cesar_word: Vec<char> = aphinian_cesar_chiper_logic(&word, &alfabet, k_value, a_value);//костыль
+
     println!("{:?}", word);
     println!("{:?}", cesar_word);
 }
