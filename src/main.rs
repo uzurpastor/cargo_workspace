@@ -50,10 +50,11 @@ fn cesar(){
     let step: usize = usize_input("input step for crypto"); 
 
     println!(" - {:?}", word);
-    let cesar_word: Vec<char> = cesar_init(&word, &alfabet, step);//костыль
+    let cesar_word: Vec<char> = cesar_init(&word, &alfabet, step);
     println!(" + {:?}", cesar_word);
 }
 
+////////////////////////////////////////////
 
 fn aphinian_cesar_chiper_logic(word: &Vec<char>, alfabet: &Vec<char>, k_value: usize, a_value: usize)-> Vec<char> {
     let n_value = alfabet.len();
@@ -74,7 +75,7 @@ fn aphinian_cesar_chiper_logic(word: &Vec<char>, alfabet: &Vec<char>, k_value: u
 
 
 fn aphinian_cesar_chiper(){
-    println!("aphinian cesar chiper:");
+    println!("aphinian cesa:");
     let k_value:usize = usize_input("\tinput k value: ");
     let a_value:usize = usize_input("\tinput a value: ");
 
@@ -86,14 +87,59 @@ fn aphinian_cesar_chiper(){
         .chars()
         .collect();
     
-    let cesar_word: Vec<char> = aphinian_cesar_chiper_logic(&word, &alfabet, k_value, a_value);//костыль
+    let cesar_word: Vec<char> = aphinian_cesar_chiper_logic(&word, &alfabet, k_value, a_value);
 
     println!("{:?}", word);
     println!("{:?}", cesar_word);
 }
 
+////////////////////////////////////////////
+
+// fn logic_keyword_cesar_chiper(word: &Vec<char>, alfabet: &Vec<char>, k_value: usize) -> Vec<char>{
+// }
+
+
+fn keyword_cesar_chiper(){
+    println!("cesar with keyword:");
+    let k_value: usize = usize_input("input k value: ");
+
+    let alfabet = vec!["АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ".chars()];
+    let word = vec!["ЛІЦЕЙ".chars()];
+
+    // let chiper_word: Vec<char> = logic_keyword_cesar_chiper(&word, &alfabet, k_value);
+    let key_word = vec!["ФОРЕЛЬ".chars()];
+    
+    let key_alfabet = vec!["".chars()];
+    for i in 0..alfabet.len()+k_value{
+        if i < k_value{
+            key_alfabet.add();
+
+        }else if i >= k_value && i < k_value+key_word.len(){
+            key_alfabet[i] = key_word[i - k_value];
+
+        }else if i >= k_value+key_word.len(){
+            let mut index_alfb: usize = 0;
+            let mut ret_v = true;
+            
+            for j in key_word.iter(){
+                if assert_eq!(alfabet[index_alfb], key_word[j]){ret_v = false}
+            }
+
+            if ret_v{
+                key_alfabet[i%alfabet.len()] = alfabet[index_alfb];
+            }
+
+            index_alfb += 1;
+        }
+
+    }
+
+}
+
+/////////////////////////////////////////////
 
 fn main(){
     cesar();
     aphinian_cesar_chiper();
+
 }
