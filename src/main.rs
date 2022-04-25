@@ -175,7 +175,7 @@ fn main(){
     //------- BEGIN EX 3 ---------//
 	println!("cesar with keyword:");
 	{
-	    let step_for_chiper: usize = usize_input("input k value: ");
+	    let step_for_chiper: usize = usize_input("input step value: ");
 	    let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
 	    let key_w : &str = "ЛІЦЕЙ";
 
