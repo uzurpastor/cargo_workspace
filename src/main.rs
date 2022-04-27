@@ -190,28 +190,142 @@ fn vernam_chiper(){
 }
 //------------ END EX 4 ----------//
 
-fn main(){
-    cesar();
-    aphinian_cesar_chiper();
+//------------ BEGIN EX 5 ----------//
 
-    //------- BEGIN EX 3 ---------//
-	println!("cesar with keyword:");
-	{
-	    let step_for_chiper: usize = usize_input("input step value: ");
-	    let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
-	    let key_w : &str = "ЛІЦЕЙ";
+// fn find_nicesize(_alfabet : &str) -> (u8, u8) {
+// 	// let len :f32 = alfabet.len() as f32;
+// 	let size: i8 = 35;
+// 	let s : i8 = (size as f32).sqrt().round() as i8;
+// 	let mut min_diff : i8 = size - s*s;
 
-	    let key_a : Vec<char> = create_key_alfabet(&alfabet, step_for_chiper);
-	    let chiped_word : Vec<char> = chiper_cesarword(key_a, &key_w, alfabet);
+// 	let (mut x , mut y) = (s , s);
 
-	    println!("{:?}\n{:?}", key_w, chiped_word);
-	}
-	//------- END EX 3 ------------//
-    //------- BEGIN EX 4 ---------//
-    println!("vernam chiper:");
+// 	'x:  loop {
+// 		'y:  loop{
+// 			min_diff = size - x*y;
+// 			if min_diff == 0 {
+// 				break 'x;
+// 			} else {
+// 				y += 1;
+// 				if min_diff < size - x*y {
+// 					min_diff = size - x*y;
+// 					break 'y;
+// 				}else
+// 				if min_diff > size - x*y{
+// 					break 'y;
+// 				}
+// 			}
+// 		}
+// 		x += 1;
+// 		y = s;
+		
+// 	}
+
+
+// 	(x as u8 , y as u8)
+// }
+
+fn create_square(alfabet_s : &str,  word_s : &str, size :(usize, usize)) -> Vec<Vec<char>> {
+	//---BEGIN---//
+		// create chiper alfabet which need recreate in square // 
+		// main logic from fn 'create_key_alfabet' > ex3 //
+
+	let alfabet : Vec<char> = alfabet_s.chars().collect();
+    let word : Vec<char> = word_s.chars().collect();
+    let mut key_alfabet : Vec<char> = Vec::new();
+
     {
-    	vernam_chiper();
+	    let mut word_c : Vec<char> = word.clone();
+	    key_alfabet.append(&mut word_c);
+	}
+
+    for i in 0..alfabet.len(){
+    	let mut k : u8 = 0;
+    	for j in 0..word.len(){
+    		if alfabet[i] == word[j]{
+    			continue;
+    		}else {
+    			k += 1;
+    		}
+    	}
+
+    	if usize::from(k) == word.len(){
+    		key_alfabet.push(alfabet[i]) 
+    	};
     }
+    //---END---//
+	//---BEGIN---//
+		// put element in form of square //
+
+	let (x, y) = size;
+    let mut square : Vec<Vec<char>> = vec!(vec!('#';y);x);
+
+	let mut k = 0;
+    'rows: for i in 0..x{
+    	for j in 0..y{
+	   		if key_alfabet.get(k) == None{
+	    		break 'rows;
+	    	}
+	    	else{
+	    		square[i][j] = key_alfabet[k];
+	    	}
+	    	k += 1;
+    	}
+    }
+
+    {
+    	for i in 0..x{
+		    println!("{:?}", square[i]);
+    	}
+    	println!("-----------------");
+    }
+    square
+    //---END---//
+}
+fn chip_word(key_word : &str, square_key : Vec<Vec<char>>, square_chiper : Vec<Vec<char>>) -> Vec<char>{
+	let mut chip : Vec<char> = Vec::new();
+
+	chip
+}
+
+
+//------------ END EX 5 ----------//
+
+fn main(){
+ //    cesar();
+ //    aphinian_cesar_chiper();
+
+ //    //------- BEGIN EX 3 ---------//
+	// println!("cesar with keyword:");
+	// {
+	//     let step_for_chiper: usize = usize_input("input step value: ");
+	//     let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
+	//     let key_w : &str = "ЛІЦЕЙ";
+
+	//     let key_a : Vec<char> = create_key_alfabet(&alfabet, step_for_chiper);
+	//     let chiped_word : Vec<char> = chiper_cesarword(key_a, &key_w, alfabet);
+
+	//     println!("{:?}\n{:?}", key_w, chiped_word);
+	// }
+	// //------- END EX 3 ------------//
+ //    //------- BEGIN EX 4 ---------//
+ //    println!("vernam chiper:");
+ //    {
+ //    	vernam_chiper();
+ //    }
 	//------- END EX 4 ------------//
+    //------- BEGIN EX 5 ---------//
+    println!("twosquare_chiper");
+    {
+    	let key_word : &str = "ЛІЦЕЙ";
+    	let chiper_word : &str = "ФОРЕЛЬ";
+		let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ.,";
+		let size :(usize, usize) = (5 , 7); //find_nicesize(&alfabet);
+		let square_key : Vec<Vec<char>> = create_square(&alfabet, &key_word, size);
+		let square_chiper: Vec<Vec<char>> = create_square(&alfabet, chiper_word, size);
+		let chipered_word: Vec<char> = chip_word(key_word, square_key, square_chiper);
+		println!("{:?}", chipered_word);
+    }
+	//------- END EX 5 ------------//
 
 }
