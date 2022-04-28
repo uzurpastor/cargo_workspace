@@ -5,3 +5,23 @@ version = 3
 [[package]]
 name = "cargo_workspase"
 version = "0.1.0"
+
+[[package]]
+name = "ex1"
+version = "0.1.0"
+
+[[package]]
+name = "ex2"
+version = "0.1.0"
+
+[[package]]
+name = "ex3"
+version = "0.1.0"
+
+[[package]]
+name = "ex4"
+version = "0.1.0"
+
+[[package]]
+name = "ex5"
+version = "0.1.0"
