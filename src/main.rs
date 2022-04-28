@@ -322,27 +322,27 @@ fn find_pos(symbol : char, square: &Vec<Vec<char>>) -> (usize, usize){
 //------------ END EX 5 ----------//
 
 fn main(){
- //    cesar();
- //    aphinian_cesar_chiper();
+    cesar();
+    aphinian_cesar_chiper();
 
- //    //------- BEGIN EX 3 ---------//
-	// println!("cesar with keyword:");
-	// {
-	//     let step_for_chiper: usize = usize_input("input step value: ");
-	//     let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
-	//     let key_w : &str = "ЛІЦЕЙ";
+    //------- BEGIN EX 3 ---------//
+	println!("cesar with keyword:");
+	{
+	    let step_for_chiper: usize = usize_input("input step value: ");
+	    let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
+	    let key_w : &str = "ЛІЦЕЙ";
 
-	//     let key_a : Vec<char> = create_key_alfabet(&alfabet, step_for_chiper);
-	//     let chiped_word : Vec<char> = chiper_cesarword(key_a, &key_w, alfabet);
+	    let key_a : Vec<char> = create_key_alfabet(&alfabet, step_for_chiper);
+	    let chiped_word : Vec<char> = chiper_cesarword(key_a, &key_w, alfabet);
 
-	//     println!("{:?}\n{:?}", key_w, chiped_word);
-	// }
-	// //------- END EX 3 ------------//
- //    //------- BEGIN EX 4 ---------//
- //    println!("vernam chiper:");
- //    {
- //    	vernam_chiper();
- //    }
+	    println!("{:?}\n{:?}", key_w, chiped_word);
+	}
+	//------- END EX 3 ------------//
+    //------- BEGIN EX 4 ---------//
+    println!("vernam chiper:");
+    {
+    	vernam_chiper();
+    }
 	//------- END EX 4 ------------//
     //------- BEGIN EX 5 ---------//
     println!("twosquare_chiper");
