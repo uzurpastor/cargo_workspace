@@ -282,12 +282,42 @@ fn create_square(alfabet_s : &str,  word_s : &str, size :(usize, usize)) -> Vec<
     square
     //---END---//
 }
-fn chip_word(key_word : &str, square_key : Vec<Vec<char>>, square_chiper : Vec<Vec<char>>) -> Vec<char>{
+fn chip_word(word : &Vec<char>, square_ch1 : Vec<Vec<char>>, square_ch2 : Vec<Vec<char>>) -> Vec<char>{
 	let mut chip : Vec<char> = Vec::new();
-
+    let mut i = 0;
+    loop{
+        if i+1 >= word.len(){
+            break;
+        }
+        let (x1, y1) = find_pos(word[i], &square_ch1);
+        i += 1;
+        let (x2, y2) = find_pos(word[i], &square_ch2);
+        chip.push(square_ch1[x1][y2]);
+        chip.push(square_ch2[x2][y1]);
+        i += 1;
+    }
 	chip
 }
 
+
+fn find_pos(symbol : char, square: &Vec<Vec<char>>) -> (usize, usize){
+    let (mut x, mut y) = (-1, -1);
+    'a:for i in 0..square.len(){
+         for j in 0..square[i].len(){
+            if symbol == square[i][j]{
+                x = i as isize;
+                y = j as isize;
+                break 'a;
+            }
+
+        }
+    }
+    if (x, y) == (-1, -1){
+        panic!("dont find symbol in chiper square");
+    }
+    (x.try_into().unwrap(), y.try_into().unwrap())
+    
+}
 
 //------------ END EX 5 ----------//
 
@@ -317,13 +347,18 @@ fn main(){
     //------- BEGIN EX 5 ---------//
     println!("twosquare_chiper");
     {
-    	let key_word : &str = "ЛІЦЕЙ";
-    	let chiper_word : &str = "ФОРЕЛЬ";
+        let word: Vec<char> = "ХЛОПЕЦЬ.".chars().collect();
+        if word.len() % 2 != 0{
+            panic!("bad word");
+        }
+    	let chiper_word1 : &str = "ФОРЕЛЬ";
+    	let chiper_word2 : &str = "ЛІЦЕЙ";
 		let alfabet : &str = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ.,";
-		let size :(usize, usize) = (5 , 7); //find_nicesize(&alfabet);
-		let square_key : Vec<Vec<char>> = create_square(&alfabet, &key_word, size);
-		let square_chiper: Vec<Vec<char>> = create_square(&alfabet, chiper_word, size);
-		let chipered_word: Vec<char> = chip_word(key_word, square_key, square_chiper);
+		let size :(usize, usize) = (7 , 5); //find_nicesize(&alfabet);
+		let square_ch1 : Vec<Vec<char>> = create_square(&alfabet, chiper_word1, size);
+		let square_ch2 : Vec<Vec<char>> = create_square(alfabet, chiper_word2, size);
+		let chipered_word: Vec<char> = chip_word(&word, square_ch1, square_ch2);
+        println!("{:?}", word);
 		println!("{:?}", chipered_word);
     }
 	//------- END EX 5 ------------//
